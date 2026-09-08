@@ -51,7 +51,7 @@
 
 | Expected                      | Observed                                                                         | Gap                                                                                                                                                                     |
 | ----------------------------- | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| East-west SSH visible on SPAN | Only the Wazuh agent detected any kind of lateral movement and generated alerts. | Suricata and Zeek did not generate any kind of logs or alerts related to a successful SSH connection. Possible that intra-VLAN traffic is not being mirrored correctly. |
+| East-West SSH visible on SPAN | Only the Wazuh agent detected any kind of lateral movement and generated alerts. | Suricata and Zeek did not generate any kind of logs or alerts related to a successful SSH connection. Possible that intra-VLAN traffic is not being mirrored correctly. |
 
 
 ---
