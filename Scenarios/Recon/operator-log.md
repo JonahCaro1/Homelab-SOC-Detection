@@ -12,7 +12,7 @@
 | --------------------- | ---------------------- |
 | Date                  | 09/01/2026             |
 | Attacker              | Kali VM: 192.168.6.180 |
-| Target                | *DVWA: 192.168.4.2*    |
+| Target                | DVWA: 192.168.4.2    |
 | Wazuh agent on target | DVWA                   |
 | Analyst               | Jonah Caro             |
 
