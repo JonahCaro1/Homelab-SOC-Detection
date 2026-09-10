@@ -36,9 +36,9 @@
 
 | Source   | Saved Search              | Documents (24h) | Primary Noise       | Screenshot |
 | -------- | ------------------------- | --------------- | ------------------- | ---------- |
-| Zeek     | `baseline-zeek-24hrs`     | 267,711         | Connection metadata |            |
-| Suricata | `baseline-suricata-24hrs` | 12,351          | Stats/alerts        |            |
-| Snort    | `baseline-snort-24hrs`    | 41,639          | Signature alerts    |            |
+| Zeek     | `baseline-zeek-24hrs`     | 267,711         | Connection metadata | [Image](https://github.com/JonahCaro1/ELK-Wazuh-Detection/blob/main/Project%20Components/Baseline/Screenshots/zeek-baseline-24hrs.png)           |
+| Suricata | `baseline-suricata-24hrs` | 12,351          | Stats/alerts        | [Image](https://github.com/JonahCaro1/ELK-Wazuh-Detection/blob/main/Project%20Components/Baseline/Screenshots/baseline-suricata-24hrs.png)           |
+| Snort    | `baseline-snort-24hrs`    | 41,639          | Signature alerts    | [Image](https://github.com/JonahCaro1/ELK-Wazuh-Detection/blob/main/Project%20Components/Baseline/Screenshots/baseline-snort-24hrs.png)           |
 
 
 ---
