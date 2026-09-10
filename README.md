@@ -1,4 +1,4 @@
-# ELK + Wazuh Detection
+# Homelab SOC Project
 
 
 | Author             | Jonah Caro                                    |
