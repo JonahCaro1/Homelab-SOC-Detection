@@ -1,0 +1,80 @@
+<!-- Custom Wazuh Rules -->
+<group name="local,project1,">
+
+  <!-- UC-001: POST telemetry (body not in access.log) -->
+  <rule id="100010" level="3">
+    <if_sid>31100,31108</if_sid>
+    <url>vulnerabilities/exec</url>
+    <match>POST</match>
+    <description>DVWA exec form POST (payload not visible in access.log)</description>
+    <mitre>
+      <id>T1059</id>
+      <id>T1190</id>
+    </mitre>
+  </rule>
+
+  <!-- UC-001: High-confidence CMDi when tokens appear with exec -->
+  <rule id="100016" level="12">
+    <if_sid>31100,31108</if_sid>
+    <url>vulnerabilities/exec</url>
+    <match>%3B|%26%26|;whoami|;id|;cat|whoami</match>
+    <description>DVWA command injection tokens with exec URL</description>
+    <mitre>
+      <id>T1059</id>
+      <id>T1190</id>
+    </mitre>
+  </rule>
+
+  <!-- UC-002: SQLi -->
+  <rule id="100013" level="12">
+    <if_sid>31100,31108,31103,31106</if_sid>
+    <url>vulnerabilities/sqli</url>
+    <match>union|%27|information_schema|or\+1|OR\+1</match>
+    <description>DVWA SQL injection patterns in request URI</description>
+    <mitre>
+      <id>T1190</id>
+    </mitre>
+  </rule>
+
+  <!-- UC-003: Upload page -->
+  <rule id="100014" level="6">
+    <if_sid>31100,31108,31103,31106</if_sid>
+    <match>vulnerabilities/upload</match>
+    <description>DVWA file upload page accessed</description>
+    <mitre>
+      <id>T1505</id>
+    </mitre>
+  </rule>
+
+  <!-- UC-003: Webshell — single rule (no parent chain). Jpeg should not match. -->
+  <rule id="100011" level="12">
+    <if_sid>31100,31108,31103,31106</if_sid>
+    <match>hackable/uploads</match>
+    <url>php</url>
+    <description>DVWA uploaded PHP/webshell accessed under hackable/uploads</description>
+    <mitre>
+      <id>T1505</id>
+      <id>T1190</id>
+    </mitre>
+  </rule>
+
+  <!-- UC-004: Nmap via Suricata -->
+  <rule id="100012" level="10">
+    <if_sid>86601</if_sid>
+    <match>Nmap</match>
+    <description>Network scan detected via Suricata (Nmap)</description>
+    <mitre>
+      <id>T1046</id>
+    </mitre>
+  </rule>
+
+  <rule id="100015" level="10" frequency="5" timeframe="120">
+    <if_matched_sid>31101</if_matched_sid>
+    <same_source_ip />
+    <description>Multiple HTTP 400 errors from same source (possible scanner)</description>
+    <mitre>
+      <id>T1046</id>
+    </mitre>
+  </rule>
+
+</group>
