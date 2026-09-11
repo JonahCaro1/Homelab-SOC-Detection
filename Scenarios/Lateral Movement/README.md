@@ -40,7 +40,7 @@
 | ------- | ------------------------------------------------------- |
 | Alerts  | sshd: authentication success, PAM: Login session opened |
 | Rule ID | 5715, 5501                                              |
-
+| Evidence | [SSHD Auth Alert](https://github.com/JonahCaro1/Homelab-SOC-Detection/blob/main/Scenarios/Lateral%20Movement/Evidence/wazuh-sshd-alert.png), [PAM Login Alert](https://github.com/JonahCaro1/Homelab-SOC-Detection/blob/main/Scenarios/Lateral%20Movement/Evidence/wazuh-pam-alert.png)                                              |
 
 ---
 
@@ -61,3 +61,5 @@
 # Findings Recap
 
 Executing the same metasploit exploit from scenario C to gain access to the Metasploitable machine resulted in the expected alerts and logs generated. Performing lateral movement via SSH only resulted in Wazuh alerts being generated, neither Suricata nor Zeek showed any kind of detection that there was successful lateral movement made.
+
+**Note:** For evidence screenshots click [here](https://github.com/JonahCaro1/Homelab-SOC-Detection/tree/main/Scenarios/Lateral%20Movement/Evidence)
