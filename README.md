@@ -67,14 +67,14 @@ Note: *See [Scenarios](https://github.com/JonahCaro1/ELK-Wazuh-Detection/tree/ma
 ## Key Components
 
 
-| Component           | Location |
-| ------------------- | -------- |
-| Networking Brief    | [Location](https://github.com/JonahCaro1/ELK-Wazuh-Detection/blob/main/Project%20Components/networking-brief.md#network-security-visibility-brief)         |
-| Kibana Dashboard File   | [Location](https://github.com/JonahCaro1/ELK-Wazuh-Detection/blob/main/Project%20Components/dashboard.ndjson)         |
-| Custom rules        | Location         |
-| Detection use cases | [Location](https://github.com/JonahCaro1/ELK-Wazuh-Detection/tree/main/Use%20Cases)          |
-| Incident report     | [Location](https://github.com/JonahCaro1/ELK-Wazuh-Detection/blob/main/Reports/INC-001.md#security-incident-investigation-report)         |
-| Baseline snapshot   | [Location](https://github.com/JonahCaro1/ELK-Wazuh-Detection/tree/main/Project%20Components/Baseline#baseline-snapshot)         |
+| Component           | 
+| ------------------- | 
+| [Networking Brief](https://github.com/JonahCaro1/ELK-Wazuh-Detection/blob/main/Project%20Components/networking-brief.md#network-security-visibility-brief)    |
+| [Kibana Dashboard File](https://github.com/JonahCaro1/ELK-Wazuh-Detection/blob/main/Project%20Components/dashboard.ndjson)   |
+| [Custom Wazuh Rules](https://github.com/JonahCaro1/Homelab-SOC-Detection/blob/main/Project%20Components/custom-wazuh-rules.xml)        |
+| [Detection Use Cases](https://github.com/JonahCaro1/ELK-Wazuh-Detection/tree/main/Use%20Cases) |
+| [Incident Report](https://github.com/JonahCaro1/ELK-Wazuh-Detection/blob/main/Reports/INC-001.md#security-incident-investigation-report)     |
+| [Baseline Snapshot](https://github.com/JonahCaro1/ELK-Wazuh-Detection/tree/main/Project%20Components/Baseline#baseline-snapshot)   |
 
 
 ---
