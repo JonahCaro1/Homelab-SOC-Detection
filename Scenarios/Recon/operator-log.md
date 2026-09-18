@@ -21,28 +21,21 @@
 
 ## Attack Log
 
-
-| #   | EST Start | EST End     | Command                    |
-| --- | --------- | ----------- | -------------------------- |
-| 1   | 14:43     | 14:43 (16s) | `nmap -sV -T4 192.168.4.2` |
-| 2   | 14:54     | 14:54 (7s)  | `nmap -sV -T4 192.168.4.2` |
+| #   | Attack            | EST Start | EST End | Command                       |
+| --- | -------------------- | --------- | ------- | --------------------------------------- |
+| 1   | Nmap Scan             | 14:43 |  14:43 (16s)  | `nmap -sV -T4 192.168.4.2` |
+| 2   | Nmap Scan      |     14:54      |    14:54 (7s)    | `nmap -sV -T4 192.168.4.2`       |
 
 
 ---
 
 
 
-## MTTD Calculation
+## MTTD
 
-
-| Event                   | Time (EST)                                                  |
-| ----------------------- | ----------------------------------------------------------- |
-| Attack started (run #1) | 14:43                                                       |
-| First alert fired       | 14:43:38                                                    |
-| Platform of first alert | Suricata                                                    |
-| Rule / SID              | ET SCAN Nmap Scripting Engine User-Agent Detected (2009358) |
-| **MTTD (minutes)**      | < 1 min                                                     |
-
+| Attack | Attack Start       | First Alert           | Rule / SID      | MTTD (Min) |
+| --------- | ------------------ | --------------------- | --------------- | ---------- |
+| Nmap Scan (Scan 1)      | 09/01/2026 @ 14:43 | 09/01/2026 @ 14:43:38 | Suricata SID: 2009358 | < 1 Min         |
 
 ---
 
