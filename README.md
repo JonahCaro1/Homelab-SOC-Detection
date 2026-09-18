@@ -11,7 +11,7 @@
 
 ## Executive Summary
 
-*This is a personal homelab SOC project containing Suricata, Snort, Zeek, Wazuh and the ELK stack. Using a virtual machine on my admin PC running Kali Linux I simulated various attacks against two different target virtual machines. These attacks included SQL injection, command injection, file uploads and metasploit exploits. Using the configured SOC services I was able to successfully detect suspicious network traffic/attacks.* 
+*This is a personal homelab SOC project containing Suricata, Snort, Zeek, Wazuh and the ELK stack. Using a virtual machine on my admin PC running Kali Linux I simulated various attacks against two different target virtual machines. These attacks included SQL injection, command injection, file uploads and metasploit exploits. Using 24 hours worth of normal network traffic logs as a baseline I was able to detect anomalies that indicated suspicious network traffic/attacks.* 
 
 ---
 
