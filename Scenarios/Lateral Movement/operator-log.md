@@ -3,8 +3,6 @@
 **MITRE:** T1021 — Remote Services  
 **Status:** **Completed**
 
-From a shell on one VLAN 4 host, attempted SSH to another VLAN 4 host.
-
 ---
 
 ## Pre-Flight
