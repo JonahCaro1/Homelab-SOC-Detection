@@ -44,8 +44,8 @@
 
 | Field                      | Value                      | 
 | -------------------------- | -------------------------- | 
-| Alert Description           | Web server 400 error code. | 
-| Alert ID                    | 31101                      |                
+| Rule Description           | Web server 400 error code. | 
+| Rule ID                    | 31101                      |                
 | Evidence | [Alert](https://github.com/JonahCaro1/Homelab-SOC-Detection/blob/main/Scenarios/Recon/Evidence/wazuh-alert.png) |
 | Notes | Multiple web server 400 errors may indicate nmap scan. | 
 
