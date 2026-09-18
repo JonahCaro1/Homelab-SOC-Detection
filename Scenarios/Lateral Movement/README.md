@@ -1,11 +1,17 @@
 # Lateral Movement Findings (Metasploitable -> DVWA)
 
-- **Executed Metasploit Exploit:**  `09/06/2026 @ 14:26 EST`
-- **Lateral SSH:** `Metasploitable -> DVWA | 09/06/2026 @ 14:28 EST`
-- **Metasploitable IP:** `192.168.4.3`
-- **DVWA:** `192.168.4.2`
+## Summary
+*After accessing the Metasploitable machine using the same ProFTPD Metasploit exploit used in the [Post Exploitation](https://github.com/JonahCaro1/Homelab-SOC-Detection/blob/main/Scenarios/Post-Exploitation/README.md#metasploit) scenario, lateral movement via SSH was attempted. The goal was to successfully access the DVWA VM which also lives on the VLAN 4. After successful lateral movement only Wazuh detected any kind of traffic. Further tuning will need to be made to the SOC services for enhanced lateral movement detection.*
 
 ---
+
+# Lateral Movement
+
+- **Metasploitable -> DVWA IP:** `192.168.4.3 -> 192.168.4.2`
+- **[Metasploit Exploit:](https://github.com/JonahCaro1/Homelab-SOC-Detection/blob/main/Scenarios/Lateral%20Movement/Evidence/msfexploit.png)** `exploit/unix/ftp/proftpd_modcopy_exec`
+- **[Lateral SSH](https://github.com/JonahCaro1/Homelab-SOC-Detection/blob/main/Scenarios/Lateral%20Movement/Evidence/ssh.png)** 
+- **Executed Metasploit Exploit Timestamp (EST):**  `09/06/2026 @ 14:26`
+- **Lateral SSH Timestamp (EST):** `09/06/2026 @ 14:28`
 
 ## Zeek
 
@@ -46,12 +52,12 @@
 
 
 
-## Expected vs observed
+## Expected vs Observed
 
 
-| Expected                      | Observed                                                                         | Gap                                                                                                                                                                     |
-| ----------------------------- | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| East-West SSH visible on SPAN | Only the Wazuh agent detected any kind of lateral movement and generated alerts. | Suricata and Zeek did not generate any kind of logs or alerts related to a successful SSH connection. Possible that intra-VLAN traffic is not being mirrored correctly. |
+| Expected                      | Observed                                                                         |                                                                                       
+| ----------------------------- | -------------------------------------------------------------------------------- | 
+| East-West SSH visible on SPAN | Only the Wazuh agent detected any kind of lateral movement and generated alerts. Suricata and Zeek did not generate any kind of logs or alerts related to a successful SSH connection. Possible that intra-VLAN traffic is not being mirrored correctly. |  
 
 
 ---
