@@ -44,7 +44,7 @@
 
 | Field   | Value                                                   |
 | ------- | ------------------------------------------------------- |
-| Alerts  | sshd: authentication success, PAM: Login session opened |
+| Rule Descriptions  | sshd: authentication success, PAM: Login session opened |
 | Rule ID | 5715, 5501                                              |
 | Evidence | [SSHD Auth Alert](https://github.com/JonahCaro1/Homelab-SOC-Detection/blob/main/Scenarios/Lateral%20Movement/Evidence/wazuh-sshd-alert.png), [PAM Login Alert](https://github.com/JonahCaro1/Homelab-SOC-Detection/blob/main/Scenarios/Lateral%20Movement/Evidence/wazuh-pam-alert.png)                                              |
 
