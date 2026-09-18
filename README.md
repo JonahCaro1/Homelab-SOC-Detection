@@ -35,12 +35,12 @@ VLAN 6 Kali ──► VLAN 4 Targets (DVWA / Metasploitable 3)
 ## Scenarios
 
 
-| Scenario          | Attack                    | Detected? | Primary Detection |
-| ----------------- | ------------------------- | --------- | ----------------- |
-| Recon             | Nmap Scan                 | **Yes**   | Suricata          |
-| Web-Exploitation  | SQLi / CMDi / File Upload | **Yes**   |                   |
-| Post-Exploitation | Metasploit / Hydra /      | **Yes**   |                   |
-| Lateral movement  | East-West SSH             | **Yes**   | Wazuh             |
+| Scenario          | Attack                    | Detected? | 
+| ----------------- | ------------------------- | --------- | 
+| [Recon](https://github.com/JonahCaro1/Homelab-SOC-Detection/tree/main/Scenarios/Recon)             | Nmap Scan                 | **Yes**   | 
+| [Web-Exploitation](https://github.com/JonahCaro1/Homelab-SOC-Detection/tree/main/Scenarios/Web-Exploitation)  | SQLi / CMDi / File Upload | **Yes**   |               
+| [Post-Exploitation](https://github.com/JonahCaro1/Homelab-SOC-Detection/tree/main/Scenarios/Post-Exploitation) | Metasploit / Hydra / PwnKit | **Yes**   |               
+| [Lateral Movement](https://github.com/JonahCaro1/Homelab-SOC-Detection/tree/main/Scenarios/Lateral%20Movement)  | East-West SSH             | **Yes**   | 
 
 
 Note: *See [Scenarios](https://github.com/JonahCaro1/ELK-Wazuh-Detection/tree/main/Scenarios) for full details*
