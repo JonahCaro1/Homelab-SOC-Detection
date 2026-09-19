@@ -102,7 +102,7 @@ See [Custom Wazuh Rules](https://github.com/JonahCaro1/Homelab-SOC-Detection/blo
 
 
 
-## Response playbook
+## Response Playbook
 
 1. If **100016**: Treat as likely Command Injection. Capture full URL, source IP and timestamp.
 2. If **only 100010**: Check Zeek HTTP logs for same window, do not assume an injection attack.
