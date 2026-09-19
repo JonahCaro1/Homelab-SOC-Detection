@@ -1,31 +1,34 @@
-# Detection Use Case — UC-004
+# Detection Use Case: Network Scan (Nmap)
 
 
-| Field                | Value                                        |
-| -------------------- | -------------------------------------------- |
-| **Use case ID**      | UC-004                                       |
-| **Title**            | Network Scan (Nmap) via Suricata in Wazuh    |
-| **Author**           | Jonah Caro                                   |
-| **Version**          | 1.0                                          |
-| **Status**           | **Production (Lab)**                         |
-| **Last tested**      | 09/08/2026                                   |
-| **Related scenario** | A — Network reconnaissance                   |
-| **Wazuh rule ID**    | 100012 (primary), 100015 (HTTP 400 fallback) |
+| Field                | Value                                                                     |
+| -------------------- | ------------------------------------------------------------------------- |
+| **Use Case ID**      | UC-004                                                                    |
+| **Title**            | Network Scan (Nmap) via Suricata in Wazuh                                 |
+| **Author**           | Jonah Caro                                                                |
+| **Version**          | 1.1                                                                       |
+| **Status**           | **Production (Lab)**                                                      |
+| **Last Tested**      | 09/08/2026                                                                |
+| **Related Scenario** | [Recon](https://github.com/JonahCaro1/Homelab-SOC-Detection/tree/main/Scenarios/Recon#network-recon-findings-dvwa-vm)                                          |
+| **Wazuh Rule IDs**   | **100012** (primary, level 10) · **100015** (HTTP 400 fallback, level 10) |
 
 
 ---
 
 
 
-## 1. Objective
+## Objective
 
 Give Wazuh a **direct** nmap/scan alert. Scenario A only showed generic **31101** (HTTP 400). With Suricata→Wazuh on `nsm-sensor`, escalate ET SCAN / Nmap signatures into rule **100012**.
 
+- **Primary (100012):** Suricata alert containing `Nmap`
+- **Fallback (100015):** ≥5× rule **31101** from the same source IP within 120s
+
 ---
 
 
 
-## 2. MITRE ATT&CK
+## MITRE ATT&CK
 
 
 | Tactic    | Technique                 | ID    |
@@ -37,84 +40,80 @@ Give Wazuh a **direct** nmap/scan alert. Scenario A only showed generic **31101*
 
 
 
-## 3. Data sources
+## Data Sources
 
 
 | Source   | Log type                 | Index / location         |
 | -------- | ------------------------ | ------------------------ |
 | Suricata | eve.json alerts          | nsm-sensor agent → Wazuh |
 | Wazuh    | Optional 31101 frequency | DVWA agent               |
-| Zeek     | conn spike               | Lab logs                 |
+| Zeek     | Connection log spike     | Lab logs                 |
 
 
 ---
 
 
 
-## 4. Logic
+## Logic
+
+
+| Rule       | Level | Condition                                      | Meaning                          |
+| ---------- | ----- | ---------------------------------------------- | -------------------------------- |
+| **100012** | 10    | Parent Suricata (`86601`) **and** match `Nmap` | Direct scan signature into Wazuh |
+| **100015** | 10    | ≥5× **31101** same source in 120s              | HTTP 400 storm fallback          |
 
 
 
-### 4.1 Rule definition
 
-- **100012**: parent Suricata alert (`86601`), match `Nmap|ET SCAN|...`
-- **100015**: ≥5× rule **31101** from same source in 120s (fallback)
+### Rule Definition
 
-
-
-### 4.2 If 100012 never fires
-
-On manager, confirm Suricata parent rule id:
-
-```bash
-grep -R "suricata" /var/ossec/ruleset/rules/*suricata* | head
-```
-
-Adjust `<if_sid>86601</if_sid>` if Wazuh version uses a different parent.
+See [Wazuh Custom Rules](https://github.com/JonahCaro1/Homelab-SOC-Detection/blob/main/Project%20Components/custom-wazuh-rules.xml): Rules **100012** and **100015**
 
 ---
 
 
 
-## 5. Alert severity
+## Alert Severity
 
 
-| Level | Justification                                        |
-| ----- | ---------------------------------------------------- |
-| 10    | Recon / scan — elevate if targeting prod-like assets |
+| Rule   | Level | Justification                                        |
+| ------ | ----- | ---------------------------------------------------- |
+| 100012 | 10    | Recon / scan — elevate if targeting prod-like assets |
+| 100015 | 10    | Burst of HTTP 400s often accompanies scanning        |
 
 
 ---
 
 
 
-## 6. False positives
+## False Positives
 
 
-| Known FP source       | Tuning action                |
-| --------------------- | ---------------------------- |
-| Authorized vuln scans | Whitelist scanner IP         |
-| Lab nmap during demos | Accept or maintain allowlist |
+| Source                | Rule            | Tuning                       |
+| --------------------- | --------------- | ---------------------------- |
+| Authorized vuln scans | 100012 / 100015 | Whitelist scanner IP         |
+| Lab nmap during demos | 100012          | Accept or maintain allowlist |
 
 
 ---
 
 
 
-## 7. Response playbook
+## Response playbook
 
-1. Confirm signature text contains Nmap / ET SCAN
-2. Note src_ip (Kali) and dest (VLAN 40)
-3. Pivot Kibana Suricata SID (e.g. 2009358) for packet-level detail
+1. Confirm signature text contains Nmap / ET SCAN.
+2. Note source IP and destination IP.
+3. Pivot Kibana Suricata SID (e.g. 2009358) for packet-level detail.
+4. Correlate Zeek connection log burst for the same window.
 
 ---
 
 
 
-## 8. Test
+## Testing
 
 
-| Test                       | Expected result                  | Last result |
+| Test                       | Expected                         | Last result |
 | -------------------------- | -------------------------------- | ----------- |
 | `nmap -sV -T4 192.168.4.2` | **100012** in Wazuh              | **Pass**    |
 | Same scan                  | Optional **100015** if many 400s | **Pass**    |
@@ -124,20 +123,22 @@ Adjust `<if_sid>86601</if_sid>` if Wazuh version uses a different parent.
 
 
 
-## 9. Metrics
+## Metrics
 
 
-| Metric | Target  | Actual  |
-| ------ | ------- | ------- |
-| MTTD   | < 1 min | < 1 min |
+| Metric        | Target  | Actual  |
+| ------------- | ------- | ------- |
+| MTTD (100012) | < 1 min | < 1 min |
 
 
 ---
 
 
 
-## 10. References
+## References
 
-- Scenario: `scenarios/A-recon/`
-- Gap closed: Wazuh only had HTTP 400, not direct scan alert
+- Scenario: [Recon](https://github.com/JonahCaro1/Homelab-SOC-Detection/tree/main/Scenarios/Recon#network-recon-findings-dvwa-vm)
+- Rules: [Custom Wazuh Rules](https://github.com/JonahCaro1/Homelab-SOC-Detection/blob/main/Project%20Components/custom-wazuh-rules.xml)
+- Gap Closed: Wazuh only had HTTP 400, not a direct scan alert
+- Residual Gap: Scans that evade Suricata Nmap signatures may only hit 100015 or Zeek volume
 
