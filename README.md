@@ -66,6 +66,11 @@ Note: *See [Scenarios](https://github.com/JonahCaro1/ELK-Wazuh-Detection/tree/ma
 
 ## Key Components
 
+<div align="center">
+  
+<table>
+<tr>
+<td width="30%" valign="top">
 
 | Component           | 
 | ------------------- | 
@@ -76,5 +81,14 @@ Note: *See [Scenarios](https://github.com/JonahCaro1/ELK-Wazuh-Detection/tree/ma
 | [Incident Report](https://github.com/JonahCaro1/ELK-Wazuh-Detection/blob/main/Reports/INC-001.md#security-incident-investigation-report)     |
 | [Baseline Snapshot](https://github.com/JonahCaro1/ELK-Wazuh-Detection/tree/main/Project%20Components/Baseline#baseline-snapshot)   |
 
+</td>
+<td width="70%" valign="top">
+  
+<img src="Project Components/SOC-Correlation-Dashboard.png" alt="SOC correlation dashboard" />
 
+<p align="center"><em>Custom Kibana correlation dashboard</em></p>
+
+</td>
+</tr>
+</table>
 ---
