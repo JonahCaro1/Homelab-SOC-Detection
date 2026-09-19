@@ -9,7 +9,7 @@
 | **Version**          | 1.1                                                              |
 | **Status**           | **Production (Lab)**                                             |
 | **Last Tested**      | 09/19/2026                                                       |
-| **Related Scenario** | Post-Exploitation: Privilege Escalation                          |
+| **Related Scenario** | [Post-Exploitation: Privilege Escalation](https://github.com/JonahCaro1/Homelab-SOC-Detection/tree/main/Scenarios/Post-Exploitation#privilege-escalation)                          |
 | **Wazuh Rule IDs**   | **100020** (Primary, level 12) · **100021** (Telemetry, level 6) |
 
 
@@ -71,7 +71,7 @@ Close the Post-Exploitation scenario's **host detection gap** for local privileg
 
 ### Rule Definition
 
-See `rules/local_rules.xml`: Rules **100020** and **100021**
+See [Custom Wazuh Rules](https://github.com/JonahCaro1/Homelab-SOC-Detection/blob/main/Project%20Components/custom-wazuh-rules.xml): Rules **100020** and **100021**
 
 Example Audit Rule (`/etc/audit/rules.d/pkexec.rules`):
 
@@ -153,8 +153,8 @@ Example Audit Rule (`/etc/audit/rules.d/pkexec.rules`):
 
 ## References
 
-- Scenario: `scenarios/C-metasploitable/` (privilege escalation / PwnKit)
-- Rules: `rules/local_rules.xml`
+- Scenario: [Post-Exploitation](https://github.com/JonahCaro1/Homelab-SOC-Detection/tree/main/Scenarios/Post-Exploitation#privilege-escalation)
+- Rules: [Custom Wazuh Rules](https://github.com/JonahCaro1/Homelab-SOC-Detection/blob/main/Project%20Components/custom-wazuh-rules.xml)
 - CVE: [CVE-2021-4034](https://nvd.nist.gov/vuln/detail/CVE-2021-4034) (PwnKit)
 - Gap Closed: Privilege escalation previously undetected by Wazuh, NSM remains correctly blind to local-only technique
 - Residual Gap: Without auditd on the agent host, both rules are blind
