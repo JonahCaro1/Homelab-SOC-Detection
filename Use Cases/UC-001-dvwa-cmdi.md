@@ -70,7 +70,7 @@ Apache access.log does **not** include POST bodies, so Wazuh cannot tell benign 
 
 ### Rule Definition
 
-See `rules/local_rules.xml`: Rules **100016** and **100010**
+See [Custom Wazuh Rules](https://github.com/JonahCaro1/Homelab-SOC-Detection/blob/main/Project%20Components/custom-wazuh-rules.xml): Rules **100016** and **100010**
 
 ---
 
