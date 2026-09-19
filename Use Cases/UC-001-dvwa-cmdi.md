@@ -43,7 +43,7 @@ Apache access.log does **not** include POST bodies, so Wazuh cannot tell benign 
 
 
 
-## Data sources
+## Data Sources
 
 
 | Source   | Log type                                       | Index / location |
