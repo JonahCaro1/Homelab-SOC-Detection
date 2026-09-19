@@ -77,4 +77,26 @@
     </mitre>
   </rule>
 
+  
+  <!-- UC-005: PwnKit / pkexec LPE (requires auditd on the agent host) -->
+  <rule id="100020" level="12">
+    <if_sid>80700</if_sid>
+    <field name="audit.execve.argc">^0$</field>
+    <description>Possible PwnKit (CVE-2021-4034): EXECVE with argc=0</description>
+    <mitre>
+      <id>T1068</id>
+      <id>T1548</id>
+    </mitre>
+    <group>pwnkit,privilege_escalation,pci_dss_10.2.7,</group>
+  </rule>
+
+  <rule id="100021" level="6">
+    <if_sid>80700</if_sid>
+    <field name="audit.key">pkexec_exec</field>
+    <description>pkexec executed (auditd) — review for privilege escalation</description>
+    <mitre>
+      <id>T1548</id>
+    </mitre>
+    <group>pkexec,privilege_escalation,</group>
+  </rule>
 </group>
