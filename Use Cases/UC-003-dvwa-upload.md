@@ -1,31 +1,34 @@
-# Detection Use Case — UC-003
+# Detection Use Case: File Upload / Webshell
 
 
-| Field                | Value                                           |
-| -------------------- | ----------------------------------------------- |
-| **Use case ID**      | UC-003                                          |
-| **Title**            | DVWA Uploaded PHP / Webshell Access             |
-| **Author**           | Jonah Caro                                      |
-| **Version**          | 1.0                                             |
-| **Status**           | **Production (Lab)**                            |
-| **Last tested**      | 09/08/2026                                      |
-| **Related scenario** | B — File upload                                 |
-| **Wazuh rule ID**    | 100011 (primary), 100014 (upload page accessed) |
+| Field                | Value                                                              |
+| -------------------- | ------------------------------------------------------------------ |
+| **Use Case ID**      | UC-003                                                             |
+| **Title**            | DVWA Uploaded PHP / Webshell Access                                |
+| **Author**           | Jonah Caro                                                         |
+| **Version**          | 1.1                                                                |
+| **Status**           | **Production (Lab)**                                               |
+| **Last Tested**      | 09/08/2026                                                         |
+| **Related Scenario** | [Web-Exploitation: File Upload](https://github.com/JonahCaro1/Homelab-SOC-Detection/tree/main/Scenarios/Web-Exploitation#file-upload)                                      |
+| **Wazuh Rule IDs**   | **100011** (Primary, level 12) · **100014** (Upload page, level 6) |
 
 
 ---
 
 
 
-## 1. Objective
+## Objective
 
-Detect access to PHP files under DVWA `hackable/uploads/` (webshell execution path). Scenario B showed Suricata ATTACK_RESPONSE on /etc/passwd output but **no Wazuh alert**.
+Detect access to PHP files under DVWA `hackable/uploads/` (webshell execution path). File upload in the Web-Exploitation scenario showed Suricata ATTACK_RESPONSE on `/etc/passwd` output but **no Wazuh alert** for the host path.
+
+- **High confidence (100011):** request to `hackable/uploads` with `.php`
+- **Earlier signal (100014):** access to the upload page (`vulnerabilities/upload`)
 
 ---
 
 
 
-## 2. MITRE ATT&CK
+## MITRE ATT&CK
 
 
 | Tactic         | Technique                            | ID        |
@@ -38,7 +41,7 @@ Detect access to PHP files under DVWA `hackable/uploads/` (webshell execution pa
 
 
 
-## 3. Data sources
+## Data sources
 
 
 | Source   | Log type                    | Index / location |
@@ -52,88 +55,94 @@ Detect access to PHP files under DVWA `hackable/uploads/` (webshell execution pa
 
 
 
-## 4. Logic
+## Logic
+
+
+| Rule       | Level | Condition                                   | Meaning                        |
+| ---------- | ----- | ------------------------------------------- | ------------------------------ |
+| **100011** | 12    | `hackable/uploads` **and** `php` in request | Uploaded PHP / webshell access |
+| **100014** | 6     | `vulnerabilities/upload`                    | Upload UI accessed             |
 
 
 
-### 4.1 Rule definition
 
-- **100011**: `/hackable/uploads/` + `.php` in request  
-- **1000111**: `/vulnerabilities/upload` page access (earlier signal)
+### Rule Definition
 
+See [Custom Wazuh Rules](https://github.com/JonahCaro1/Homelab-SOC-Detection/blob/main/Project%20Components/custom-wazuh-rules.xml): Rules **100011** and **100014**
 
-
-### 4.2 Limitations
-
-- Detects **access** to uploaded PHP, not file content in response body  
-- Suricata still better for passwd-in-response; this closes the **host** gap
-
----
-
-
-
-## 5. Alert severity
-
-
-| Level       | Justification         |
-| ----------- | --------------------- |
-| 12 (100011) | Webshell-class access |
-| 6 (100014)  | Upload UI access      |
-
+Detects **access** to uploaded PHP, not response-body content. Suricata remains stronger for passwd-in-response.
 
 ---
 
 
 
-## 6. False positives
+## Alert Severity
 
 
-| Known FP source             | Tuning action        |
-| --------------------------- | -------------------- |
-| Lab cleanup listing uploads | Time-bound or accept |
+| Rule   | Level | Justification         |
+| ------ | ----- | --------------------- |
+| 100011 | 12    | Webshell-class access |
+| 100014 | 6     | Upload UI access      |
 
 
 ---
 
 
 
-## 7. Response playbook
+## False Positives
 
-1. Note filename in `url` (e.g. `test.php`)
-2. Correlate Suricata passwd ATTACK_RESPONSE at same timestamp
-3. FIM stretch: watch upload directory for new `.php`
+
+| Source                      | Rule   | Tuning               |
+| --------------------------- | ------ | -------------------- |
+| Lab cleanup listing uploads | 100011 | Time-bound or accept |
+| Browsing upload form only   | 100014 | Expected telemetry   |
+
 
 ---
 
 
 
-## 8. Test plan
+## Response Playbook
+
+1. If **100011**: note filename in `url` (`test.php`), treat as likely webshell access.
+2. Correlate Suricata passwd ATTACK_RESPONSE at the same timestamp.
+3. Pivot Zeek HTTP for the same URI / source IP.
+4. Optional: File Integrity Monitoring on the upload directory for new `.php` files.
+
+---
 
 
-| Test                              | Expected result  | Last result |
+
+## Testing
+
+
+| Test                              | Expected         | Last result |
 | --------------------------------- | ---------------- | ----------- |
 | Upload PHP webshell + GET execute | **100011** fires | **Pass**    |
 | Open upload page only             | **100014** fires | **Pass**    |
+| Upload non-PHP (e.g. jpeg) only   | No 100011        | **Pass**    |
 
 
 ---
 
 
 
-## 9. Metrics
+## Metrics
 
 
-| Metric | Target  | Actual  |
-| ------ | ------- | ------- |
-| MTTD   | < 1 min | < 1 min |
+| Metric        | Target  | Actual  |
+| ------------- | ------- | ------- |
+| MTTD (100011) | < 1 min | < 1 min |
 
 
 ---
 
 
 
-## 10. References
+## References
 
-- Scenario: `scenarios/B-dvwa-web/`
-- Gap closed: No Wazuh alert on file upload / webshell
+- Scenario: [Web-Exploitation](https://github.com/JonahCaro1/Homelab-SOC-Detection/tree/main/Scenarios/Web-Exploitation#file-upload)
+- Rules: [Custom Wazuh Rules](https://github.com/JonahCaro1/Homelab-SOC-Detection/blob/main/Project%20Components/custom-wazuh-rules.xml)
+- Gap Closed: No Wazuh alert on file upload / webshell access
+- Residual Gap: Rule detects access path, not shell command output in HTTP body
 
