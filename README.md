@@ -91,4 +91,3 @@ Note: *See [Scenarios](https://github.com/JonahCaro1/ELK-Wazuh-Detection/tree/ma
 </td>
 </tr>
 </table>
----
