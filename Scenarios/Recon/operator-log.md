@@ -1,11 +1,7 @@
 # Network Reconnaissance
 
-**MITRE:** T1046 — Network Service Discovery  
-**Status:** Complete
-
----
-
-## Pre-Flight
+**MITRE:** Network Service Discovery (T1046)
+**Status:** **Completed**
 
 
 | Field                 | Value                  |
@@ -17,7 +13,6 @@
 | Analyst               | Jonah Caro             |
 
 
----
 
 ## Attack Log
 
@@ -27,17 +22,12 @@
 | 2   | Nmap Scan      |     14:54      |    14:54 (7s)    | `nmap -sV -T4 192.168.4.2`       |
 
 
----
-
-
 
 ## MTTD
 
 | Attack | Attack Start       | First Alert           | Rule / SID      | MTTD (Min) |
 | --------- | ------------------ | --------------------- | --------------- | ---------- |
 | Nmap Scan (Scan 1)      | 09/01/2026 @ 14:43 | 09/01/2026 @ 14:43:38 | Suricata SID: 2009358 | < 1 Min         |
-
----
 
 
 
