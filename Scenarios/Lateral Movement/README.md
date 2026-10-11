@@ -1,7 +1,9 @@
 # Lateral Movement Findings (Metasploitable -> DVWA)
 
 ## Summary
-*After accessing the Metasploitable machine using the same ProFTPD Metasploit exploit used in the [Post Exploitation](https://github.com/JonahCaro1/Homelab-SOC-Detection/blob/main/Scenarios/Post-Exploitation/README.md#metasploit) scenario, lateral movement via SSH was attempted. The goal was to successfully access the DVWA VM which also lives on the VLAN 4. After successful lateral movement only Wazuh detected any kind of traffic. Further tuning will need to be made to the SOC services for enhanced lateral movement detection.*
+*The point of this scenario was to simulate and detect "lateral movement". Lateral movement is the method used to move sideways (laterally) through a network after gaining an initial foothold (Ex: exploiting a vulnerable system). In this case I gained access to a compromised virtual machine (Metasploitable) on the network. Once inside the system SSH (Secure Shell) was used to gain remote access on a different virtual machine (DVWA) in the same network.*
+
+*After accessing the Metasploitable machine using the same ProFTPD Metasploit exploit used in the [Post Exploitation](https://github.com/JonahCaro1/Homelab-SOC-Detection/blob/main/Scenarios/Post-Exploitation/README.md#metasploit) scenario, lateral movement via SSH was attempted. The goal was to successfully access the DVWA VM which also lives on VLAN 4. After successful lateral movement, only Wazuh detected any kind of traffic. Further tuning will need to be made to the SOC services for enhanced lateral movement detection.*
 
 ---
 
