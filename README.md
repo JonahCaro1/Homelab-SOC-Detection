@@ -2,9 +2,8 @@
 
 ## Summary
 
-*This is a personal homelab Security Operation Center (SOC) project. The objective of this project was to practice both network and host monitoring to detect suspicious activity and potential attacks. Using Suricata, Snort, Zeek, Wazuh, and the ELK stack I practiced monitoring various types of logs to determine if suspicious activity was taking place. Using a Kali Linux virtual machine on my admin PC, I simulated various attacks and suspicious traffic against two different target virtual machines. This included recon scans, SQL injection, command injection, file uploads, Metasploit exploits and various other methods. Using 24 hours worth of normal network traffic logs as a baseline I was able to detect anomalies that indicated suspicious network traffic/attacks.* 
+*This is a personal homelab Security Operation Center (SOC) project. The objective of this project was to practice both network and host monitoring to detect suspicious activity and potential attacks. Using Suricata, Snort, Zeek, Wazuh, and the ELK stack I practiced monitoring and analyzing various types of logs to determine if suspicious activity was taking place. Using a Kali Linux virtual machine on my admin PC, I simulated various attacks and suspicious network traffic against two different target virtual machines. This included recon scans, SQL injection, command injection, file uploads, Metasploit exploits and various other methods. Using 24 hours worth of normal network traffic logs as a baseline I was able to detect anomalies that indicated suspicious network traffic/attacks.* 
 
----
 
 
 
@@ -19,12 +18,13 @@ VLAN 6 Kali ──► VLAN 4 Targets (DVWA / Metasploitable 3)
                       └──► Wazuh Manager
 ```
 
----
+
 
 
 
 ## Scenarios
 
+*Each scenario provides examples of the different types of attacks/suspicious activity executed against the target machines along with the analysis findings. To view these findings and additional details for each scenario click on the hyperlink text below.*
 
 | Scenario          | Attack                    | Detected? | 
 | ----------------- | ------------------------- | --------- | 
@@ -34,7 +34,7 @@ VLAN 6 Kali ──► VLAN 4 Targets (DVWA / Metasploitable 3)
 | [Lateral Movement](https://github.com/JonahCaro1/Homelab-SOC-Detection/tree/main/Scenarios/Lateral%20Movement)  | East-West SSH             | **Yes**   | 
 
 
-Note: *See [Scenarios](https://github.com/JonahCaro1/ELK-Wazuh-Detection/tree/main/Scenarios) for full details*
+*See [Scenarios](https://github.com/JonahCaro1/ELK-Wazuh-Detection/tree/main/Scenarios) for full details*
 
 ---
 
