@@ -1,6 +1,6 @@
 # Attack Scenarios
 
----
+*Each scenario provides examples of the different types of attacks/suspicious activity executed against the target machines along with the analysis findings. For a general overview write up of each scenario including the findings select the hyperlink for each respective scenario under the **Index** section. The **Attack Log** hyperlinks will take you to each respective attack within those findings. For evidence and log screenshots click on the **Detection Matrix** hyperlinks. Additional evidence and resource links for additional information are listed in each scenario folder/write up.*
 
 ## Index
 
@@ -13,7 +13,7 @@
 | [Lateral Movement](https://github.com/JonahCaro1/Homelab-SOC-Detection/tree/main/Scenarios/Lateral%20Movement)  | T1021: Remote Services                   | **Complete**    |
 
 
----
+
 
 ## Attack Log
 
@@ -30,7 +30,7 @@
 | [Lateral Movement](https://github.com/JonahCaro1/Homelab-SOC-Detection/tree/main/Scenarios/Lateral%20Movement#lateral-movement)  | SSH Metasploitable → DVWA                                                             | 09/06/2026 @ 14:26 | 14:26     | Metasploitable *192.168.4.3* | DVWA *192.168.4.2*           | DVWA           |
 
 
----
+
 
 
 
