@@ -1,10 +1,10 @@
 # Network Recon Findings (DVWA VM)
 
 ## Summary
+*The goal for this scenario was to analyze logs to detect network reconnaissance against the target machine (DVWA). Reconnaissance was achieved using the Nmap tool on my Kali Linux attacker machine. Nmap is an open source tool used for network discovery, security auditing, and port scanning. In this case the scan showed vital network information about the target including open network ports, the services running on each port and the versions of each service. The information provided from these scans would be important when conducting a penetration test as it may indicate vulnerable services.*
 
 *Conducted two different nmap scans from Kali VM (192.168.6.180) to DVWA (192.168.4.2). One scan was at 14:43 PM EST and the other at 14:54 PM EST. Zeek, Suricata, Snort and Wazuh all showed indicators of suspicious network activity.*
 
----
 
 # Nmap Scan
 
@@ -22,7 +22,6 @@
 | Protocols / Ports Observed       | *TCP Ports: 22, 80, 100, 1165, 5950* |
 | Evidence       | [Filtered Connection Logs](https://github.com/JonahCaro1/Homelab-SOC-Detection/blob/main/Scenarios/Recon/Evidence/zeek-postnmap-ipfilter-1hr.png) |
 
----
 
 
 
@@ -35,7 +34,6 @@
 | Signature Name | ET SCAN Nmap Scripting Engine User-Agent Detected (Nmap Scripting Engine) |
 | Evidence    | [Alert Log](https://github.com/JonahCaro1/Homelab-SOC-Detection/blob/main/Scenarios/Recon/Evidence/suricata-alert-example.png)                                                                        |
 
----
 
 
 
@@ -49,8 +47,6 @@
 | Evidence | [Alert](https://github.com/JonahCaro1/Homelab-SOC-Detection/blob/main/Scenarios/Recon/Evidence/wazuh-alert.png) |
 | Notes | Multiple web server 400 errors may indicate nmap scan. | 
 
----
-
 
 
 ## Snort
@@ -62,7 +58,6 @@
 | Notes                 | Logs spiked up to 2,519 from the average 500 during nmap scans. |
 
 
----
 
 
 
@@ -76,7 +71,6 @@
 | Wazuh alert on DVWA agent | There were multiple alerts for web error 400. This may indicate an nmap scan but is not a direct claim. |
 
 
----
 
 
 
