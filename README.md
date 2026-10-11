@@ -2,7 +2,7 @@
 
 ## Summary
 
-*This is a personal homelab Security Operation Center (SOC) project. The objective of this project was to practice both network and host monitoring to detect suspicious activity and potential attacks. Using Suricata, Snort, Zeek, Wazuh, and the ELK stack I practiced monitoring various types of logs to determine if suspicious activity was taking place. Using a Kali Linux virtual machine on my admin PC I simulated various attacks and suspicious traffic against two different target virtual machines. This included recon scans, SQL injection, command injection, file uploads, Metasploit exploits and various other methods. Using 24 hours worth of normal network traffic logs as a baseline I was able to detect anomalies that indicated suspicious network traffic/attacks.* 
+*This is a personal homelab Security Operation Center (SOC) project. The objective of this project was to practice both network and host monitoring to detect suspicious activity and potential attacks. Using Suricata, Snort, Zeek, Wazuh, and the ELK stack I practiced monitoring various types of logs to determine if suspicious activity was taking place. Using a Kali Linux virtual machine on my admin PC, I simulated various attacks and suspicious traffic against two different target virtual machines. This included recon scans, SQL injection, command injection, file uploads, Metasploit exploits and various other methods. Using 24 hours worth of normal network traffic logs as a baseline I was able to detect anomalies that indicated suspicious network traffic/attacks.* 
 
 ---
 
