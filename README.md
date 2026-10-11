@@ -7,9 +7,9 @@
 
 
 
-## Architecture
+## Network Architecture
 
-```text
+```
 VLAN 6 Kali ──► VLAN 4 Targets (DVWA / Metasploitable 3)
                       │
                       ▼ SPAN
@@ -34,7 +34,7 @@ VLAN 6 Kali ──► VLAN 4 Targets (DVWA / Metasploitable 3)
 | [Lateral Movement](https://github.com/JonahCaro1/Homelab-SOC-Detection/tree/main/Scenarios/Lateral%20Movement)  | East-West SSH             | **Yes**   | 
 
 
-*See [Scenarios](https://github.com/JonahCaro1/ELK-Wazuh-Detection/tree/main/Scenarios) for full details*
+*See [Scenarios](https://github.com/JonahCaro1/ELK-Wazuh-Detection/tree/main/Scenarios) for full details!*
 
 ---
 
@@ -42,6 +42,7 @@ VLAN 6 Kali ──► VLAN 4 Targets (DVWA / Metasploitable 3)
 
 ## Detailed Write-Ups
 
+*These are detailed information write ups for each scenario. To view the important information including log findings please click on the hyperlinks under the **Findings** category!* 
 
 | Scenario          | Operator Log | Findings | Evidence Folder |
 | ----------------- | ------------ | -------- | --------------- |
